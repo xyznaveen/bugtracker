@@ -1,0 +1,13 @@
+F:\TBC\BugTracker\Assignment 2\Assignment 2\bin\Debug\Assignment 2.exe.config
+F:\TBC\BugTracker\Assignment 2\Assignment 2\bin\Debug\Assignment 2.exe
+F:\TBC\BugTracker\Assignment 2\Assignment 2\bin\Debug\Assignment 2.pdb
+F:\TBC\BugTracker\Assignment 2\Assignment 2\obj\Debug\Assignment 2.csprojResolveAssemblyReference.cache
+F:\TBC\BugTracker\Assignment 2\Assignment 2\obj\Debug\Assignment_2.Properties.Resources.resources
+F:\TBC\BugTracker\Assignment 2\Assignment 2\obj\Debug\Assignment 2.csproj.GenerateResource.Cache
+F:\TBC\BugTracker\Assignment 2\Assignment 2\obj\Debug\Assignment 2.exe
+F:\TBC\BugTracker\Assignment 2\Assignment 2\obj\Debug\Assignment 2.pdb
+F:\TBC\BugTracker\Assignment 2\Assignment 2\obj\Debug\Assignment_2.Form1.resources
+F:\TBC\BugTracker\Assignment 2\Assignment 2\obj\Debug\Assignment_2.Register.resources
+F:\TBC\BugTracker\Assignment 2\Assignment 2\bin\Debug\MySql.Data.dll
+F:\TBC\BugTracker\Assignment 2\Assignment 2\bin\Debug\MySql.Data.xml
+F:\TBC\BugTracker\Assignment 2\Assignment 2\obj\Debug\Assignment_2.Dashboard.resources
