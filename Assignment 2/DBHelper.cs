@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,15 +36,15 @@ namespace Assignment_2
             return result;
         }
 
-
+        
         /// <summary>
         /// Retrives the data from the table single or collection.
         /// </summary>
         /// <param name="query">MySQL syntax for select statement</param>
         /// <returns>MySqlDataReader which has the collection of data</returns>
-        public static MySqlDataReader runSelect(string query)
+        public static IDataReader runSelect(string query)
         {
-            MySqlDataReader result = null;
+            IDataReader result = null;
 
             var dbCon = DBConnection.Instance();
             dbCon.DatabaseName = "ase_bug_tracking";
@@ -51,7 +52,12 @@ namespace Assignment_2
             if (dbCon.IsConnect() && !String.IsNullOrEmpty(query))
             {
                 var cmd = new MySqlCommand(query, dbCon.Connection);
-                result = cmd.ExecuteReader();
+
+                var dt = new DataTable();
+                dt.Load( cmd.ExecuteReader() );
+
+                result = dt.CreateDataReader();
+
                 dbCon.Close();
             }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -35,6 +36,33 @@ namespace Assignment_2
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+
+            string query = "SELECT id,title,date_added,status FROM bugs";
+            IDataReader reader = DBHelper.runSelect(query);
+            dataGrid.Rows.Clear();
+            while (reader.Read())
+            {
+                dataGrid.Rows.Add(reader.GetInt32(0), reader.GetString(1), reader.GetDateTime(2),reader.GetString(3));
+            }
+            
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            //DataGridViewRow drv = (DataGridViewRow)dataGrid.SelectedRows[0];
+            if ( dataGrid.SelectedRows.Count > 0 ) { 
+                string val = dataGrid.SelectedRows[0].Cells["id"].Value.ToString();
+                MessageBox.Show(val + " ");
+            }
         }
     }
 }
