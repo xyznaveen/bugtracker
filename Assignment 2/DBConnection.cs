@@ -35,7 +35,7 @@ namespace Assignment_2
             _instance = new DBConnection();
             return _instance;
         }
-
+        
         public bool IsConnect()
         {
             if (Connection == null)

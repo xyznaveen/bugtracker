@@ -1,0 +1,179 @@
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Assignment_2
+{
+    public partial class Dashboard : Form
+    {
+        public static int userId = -1;
+
+        public static string userType = null;
+
+        public Dashboard()
+        {
+            InitializeComponent();
+
+            string queryRole = "SELECT type FROM users u, roles r, roles_users ru WHERE u.id = ru.user_id AND r.id = ru.role_id AND u.id = " + userId;
+            IDataReader reader = DBHelper.runSelect(queryRole);
+            
+            while(reader.Read())
+            {
+                userType = reader.GetString(0);
+            }
+
+            this.Text = "Dashboard :: " + userType;
+
+            if( userType != null )
+            {
+                switch(userType)
+                {
+                    case "admin":
+                        {
+                            rootTab.TabPages.Remove(tabAddBug);
+                            rootTab.TabPages.Remove(tabDeveloper);
+                            rootTab.TabPages.Remove(tabTester);
+                            break;
+                        }
+                    case "developer":
+                        {
+
+                            break;
+                        }
+                    case "tester":
+                        {
+                            
+                            break;
+                        }
+                    default:
+                        break;
+                }
+            }
+
+        }
+
+        private void Dashboard_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void aboutProgramToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This program is a simple Bug Tracking application.\n\nIt helps developer and testers keep track of all the bugs and their fix status.");
+        }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+
+            string query = "SELECT id,title,date_added,status FROM bugs";
+            IDataReader reader = DBHelper.runSelect(query);
+            dataGrid.Rows.Clear();
+            while (reader.Read())
+            {
+                dataGrid.Rows.Add(reader.GetInt32(0), reader.GetString(1), reader.GetDateTime(2),reader.GetString(3));
+            }
+            
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            //DataGridViewRow drv = (DataGridViewRow)dataGrid.SelectedRows[0];
+            if ( dataGrid.SelectedRows.Count > 0 ) { 
+                string val = dataGrid.SelectedRows[0].Cells["id"].Value.ToString();
+                MessageBox.Show(val + " ");
+            }
+        }
+
+        private void tabOne_Selected(object sender, TabControlEventArgs e)
+        {
+            fetchFromTableUsers();
+        }
+
+        private void fetchFromTableUsers()
+        {
+            // Clear the current table
+            adminUsersList.Rows.Clear();
+
+            string query = "SELECT id,first_name,last_name,username,date_created FROM users WHERE 1";
+
+            IDataReader reader = DBHelper.runSelect(query);
+
+            while (reader.Read())
+            {
+                adminUsersList.Rows.Add(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetDateTime(4));
+            }
+        }
+
+        private void adminRefreshList_Click(object sender, EventArgs e)
+        {
+            fetchFromTableUsers();
+        }
+
+        private void adminDisableUser_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void adminEditDetails_Click(object sender, EventArgs e)
+        {
+            int selectedUser = -1;
+            
+            if (adminUsersList.SelectedRows.Count > 0)
+            {
+                string val = adminUsersList.SelectedRows[0].Cells["uid"].Value.ToString();
+                int.TryParse(val, out selectedUser);
+
+                UpdateUserDetails uud = new UpdateUserDetails(selectedUser);
+                if (uud.ShowDialog() == DialogResult.OK)
+                {
+                    MessageBox.Show("User details have been updated.");
+                }
+            }
+
+            /* if (selectedUser )
+            {
+                int selectedRow = adminUsersList.CurrentCell.RowIndex;
+                int colCount = adminUsersList.ColumnCount;
+
+                for (int i = 0; i < colCount; ++i)
+                {
+                    adminUsersList[i, selectedRow].Selected = true;
+                }
+            } */
+            
+        }
+
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangePassword cp = new ChangePassword();
+
+            if( cp.ShowDialog() == DialogResult.OK )
+            {
+                MessageBox.Show("Password updated.");
+            }
+
+        }
+    }
+}

@@ -11,3 +11,5 @@ F:\TBC\BugTracker\Assignment 2\Assignment 2\obj\Debug\Assignment_2.Register.reso
 F:\TBC\BugTracker\Assignment 2\Assignment 2\bin\Debug\MySql.Data.dll
 F:\TBC\BugTracker\Assignment 2\Assignment 2\bin\Debug\MySql.Data.xml
 F:\TBC\BugTracker\Assignment 2\Assignment 2\obj\Debug\Assignment_2.Dashboard.resources
+F:\TBC\BugTracker\Assignment 2\Assignment 2\obj\Debug\Assignment_2.UpdateUserDetails.resources
+F:\TBC\BugTracker\Assignment 2\Assignment 2\obj\Debug\Assignment_2.ChangePassword.resources

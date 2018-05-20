@@ -16,8 +16,9 @@ namespace Assignment_2
         public Form1()
         {
             InitializeComponent();
+            this.Text = "Welcome :: Bug Tracking System";
         }
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -29,29 +30,33 @@ namespace Assignment_2
 
             if (dbCon.IsConnect())
             {
-                string query = "SELECT username,password FROM users where username='" + user + "' and password='" + password + "'" ;
+                string query = "SELECT id,username,password FROM users where username='" + user + "' and password='" + password + "'" ;
                 var cmd = new MySqlCommand(query, dbCon.Connection);
                 var reader = cmd.ExecuteReader();
-                
+                bool userExists = false;
                 while (reader.Read())
                 {
-                    string dbUsername = reader.GetString(0);
-                    string dbPassword = reader.GetString(1);
+                    string dbUsername = reader.GetString(1);
+                    string dbPassword = reader.GetString(2);
                     
                     if( !String.IsNullOrEmpty(dbUsername) && !String.IsNullOrEmpty(dbPassword) )
                     {
+                        userExists = !userExists;
+
+                        // Get user_id for later usage
+                        Dashboard.userId = reader.GetInt32(0);
+
                         // User exists
                         this.Hide();
                         Dashboard dash = new Dashboard();
                         dash.Show();
-                    } else
-                    {
-                        // User doesn't exist
-
-
                     }
 
                 }
+                
+                if(!userExists)
+                    MessageBox.Show("username / password doesn't match.");
+
                 dbCon.Close();
             }
         }
@@ -65,27 +70,7 @@ namespace Assignment_2
 
         private void btnSignup_Click(object sender, EventArgs e)
         {
-            string firstName = registerFirstName.Text.ToString();
-            string lastName = registerLastName.Text.ToString();
-            string username = registerUsername.Text.ToString();
-            string password = registerPassword.Text.ToString();
-            string role = null;
-            string timestamp = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
-
-            try {
-                role = comboRole.Items[comboRole.SelectedIndex].ToString();
-            } catch (Exception) { };
-
-            string query = "INSERT INTO users(first_name, last_name, username, password, date_created) values('"+firstName+"','"+lastName+"','"+username+"','"+password+"','"+timestamp+"')";
-            //string query = "SELECT * FROM users WHERE id = 1";
             
-            if ( DBHelper.runInsert(query) >= 0 )
-            {
-                MessageBox.Show("User " + username + " created. You can login now!");
-            } else
-            {
-                MessageBox.Show("There was an error creating the user.");
-            }
             
         }
     }

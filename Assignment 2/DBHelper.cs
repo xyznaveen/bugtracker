@@ -30,8 +30,9 @@ namespace Assignment_2
             {
                 var cmd = new MySqlCommand(query, dbCon.Connection);
                 result = cmd.ExecuteNonQuery();
-                dbCon.Close();
             }
+
+            dbCon.Close();
 
             return result;
         }
@@ -47,6 +48,7 @@ namespace Assignment_2
             IDataReader result = null;
 
             var dbCon = DBConnection.Instance();
+
             dbCon.DatabaseName = "ase_bug_tracking";
 
             if (dbCon.IsConnect() && !String.IsNullOrEmpty(query))
