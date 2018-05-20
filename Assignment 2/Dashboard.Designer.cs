@@ -55,6 +55,15 @@
             this.tabTester = new System.Windows.Forms.TabPage();
             this.tabAddBug = new System.Windows.Forms.TabPage();
             this.panelAddBug = new System.Windows.Forms.Panel();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.editorSrc = new FastColoredTextBoxNS.FastColoredTextBox();
             this.comboAssignedTo = new System.Windows.Forms.ComboBox();
             this.textUrl = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
@@ -91,11 +100,11 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.cToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.javaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pHPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.javascriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.cToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.javascriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editor = new FastColoredTextBoxNS.FastColoredTextBox();
             this.textLineEnd = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
@@ -141,15 +150,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.textFirstName = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.editorSrc = new FastColoredTextBoxNS.FastColoredTextBox();
-            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-            this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.rootTab.SuspendLayout();
             this.tabAdmin.SuspendLayout();
@@ -157,6 +157,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.adminUsersList)).BeginInit();
             this.tabAddBug.SuspendLayout();
             this.panelAddBug.SuspendLayout();
+            this.toolStrip2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.editorSrc)).BeginInit();
             this.tabBugsList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.tabUpdateBug.SuspendLayout();
@@ -164,8 +166,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.editor)).BeginInit();
             this.tabAddUser.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.editorSrc)).BeginInit();
-            this.toolStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -425,6 +425,103 @@
             this.panelAddBug.Name = "panelAddBug";
             this.panelAddBug.Size = new System.Drawing.Size(694, 499);
             this.panelAddBug.TabIndex = 2;
+            // 
+            // toolStrip2
+            // 
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripDropDownButton2});
+            this.toolStrip2.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.Size = new System.Drawing.Size(694, 25);
+            this.toolStrip2.TabIndex = 44;
+            this.toolStrip2.Text = "toolStrip2";
+            // 
+            // toolStripDropDownButton2
+            // 
+            this.toolStripDropDownButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem3,
+            this.toolStripMenuItem4,
+            this.toolStripMenuItem5,
+            this.toolStripMenuItem6});
+            this.toolStripDropDownButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton2.Image")));
+            this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
+            this.toolStripDropDownButton2.Size = new System.Drawing.Size(72, 22);
+            this.toolStripDropDownButton2.Text = "Language";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(125, 22);
+            this.toolStripMenuItem1.Text = "C#";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(125, 22);
+            this.toolStripMenuItem2.Text = "SQL";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(125, 22);
+            this.toolStripMenuItem3.Text = "Javascript";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(125, 22);
+            this.toolStripMenuItem4.Text = "PHP";
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(125, 22);
+            this.toolStripMenuItem5.Text = "VB";
+            this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
+            // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(125, 22);
+            this.toolStripMenuItem6.Text = "XML";
+            this.toolStripMenuItem6.Click += new System.EventHandler(this.toolStripMenuItem6_Click);
+            // 
+            // editorSrc
+            // 
+            this.editorSrc.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
+            this.editorSrc.AutoScrollMinSize = new System.Drawing.Size(2, 15);
+            this.editorSrc.BackBrush = null;
+            this.editorSrc.CharHeight = 15;
+            this.editorSrc.CharWidth = 7;
+            this.editorSrc.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.editorSrc.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.editorSrc.Font = new System.Drawing.Font("Consolas", 9.75F);
+            this.editorSrc.IsReplaceMode = false;
+            this.editorSrc.Location = new System.Drawing.Point(345, 79);
+            this.editorSrc.Name = "editorSrc";
+            this.editorSrc.Paddings = new System.Windows.Forms.Padding(0);
+            this.editorSrc.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.editorSrc.Size = new System.Drawing.Size(342, 393);
+            this.editorSrc.TabIndex = 43;
+            this.editorSrc.Zoom = 100;
             // 
             // comboAssignedTo
             // 
@@ -784,44 +881,44 @@
             // cToolStripMenuItem
             // 
             this.cToolStripMenuItem.Name = "cToolStripMenuItem";
-            this.cToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.cToolStripMenuItem.Text = "C#";
             this.cToolStripMenuItem.Click += new System.EventHandler(this.cToolStripMenuItem_Click);
+            // 
+            // cToolStripMenuItem1
+            // 
+            this.cToolStripMenuItem1.Name = "cToolStripMenuItem1";
+            this.cToolStripMenuItem1.Size = new System.Drawing.Size(125, 22);
+            this.cToolStripMenuItem1.Text = "SQL";
+            this.cToolStripMenuItem1.Click += new System.EventHandler(this.cToolStripMenuItem1_Click);
             // 
             // javaToolStripMenuItem
             // 
             this.javaToolStripMenuItem.Name = "javaToolStripMenuItem";
-            this.javaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.javaToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.javaToolStripMenuItem.Text = "Javascript";
             this.javaToolStripMenuItem.Click += new System.EventHandler(this.javaToolStripMenuItem_Click);
             // 
             // pHPToolStripMenuItem
             // 
             this.pHPToolStripMenuItem.Name = "pHPToolStripMenuItem";
-            this.pHPToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pHPToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.pHPToolStripMenuItem.Text = "PHP";
             this.pHPToolStripMenuItem.Click += new System.EventHandler(this.pHPToolStripMenuItem_Click);
-            // 
-            // javascriptToolStripMenuItem
-            // 
-            this.javascriptToolStripMenuItem.Name = "javascriptToolStripMenuItem";
-            this.javascriptToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.javascriptToolStripMenuItem.Text = "XML";
-            this.javascriptToolStripMenuItem.Click += new System.EventHandler(this.javascriptToolStripMenuItem_Click);
-            // 
-            // cToolStripMenuItem1
-            // 
-            this.cToolStripMenuItem1.Name = "cToolStripMenuItem1";
-            this.cToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.cToolStripMenuItem1.Text = "SQL";
-            this.cToolStripMenuItem1.Click += new System.EventHandler(this.cToolStripMenuItem1_Click);
             // 
             // cToolStripMenuItem2
             // 
             this.cToolStripMenuItem2.Name = "cToolStripMenuItem2";
-            this.cToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.cToolStripMenuItem2.Size = new System.Drawing.Size(125, 22);
             this.cToolStripMenuItem2.Text = "VB";
             this.cToolStripMenuItem2.Click += new System.EventHandler(this.cToolStripMenuItem2_Click);
+            // 
+            // javascriptToolStripMenuItem
+            // 
+            this.javascriptToolStripMenuItem.Name = "javascriptToolStripMenuItem";
+            this.javascriptToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.javascriptToolStripMenuItem.Text = "XML";
+            this.javascriptToolStripMenuItem.Click += new System.EventHandler(this.javascriptToolStripMenuItem_Click);
             // 
             // editor
             // 
@@ -836,7 +933,7 @@
         '\"',
         '\'',
         '\''};
-            this.editor.AutoScrollMinSize = new System.Drawing.Size(29, 18);
+            this.editor.AutoScrollMinSize = new System.Drawing.Size(2, 18);
             this.editor.BackBrush = null;
             this.editor.CharHeight = 18;
             this.editor.CharWidth = 9;
@@ -1170,6 +1267,7 @@
             // linkGeneratePassword
             // 
             this.linkGeneratePassword.AutoSize = true;
+            this.linkGeneratePassword.BackColor = System.Drawing.Color.Teal;
             this.linkGeneratePassword.LinkColor = System.Drawing.Color.White;
             this.linkGeneratePassword.Location = new System.Drawing.Point(182, 342);
             this.linkGeneratePassword.Name = "linkGeneratePassword";
@@ -1182,6 +1280,7 @@
             // linkGeneraeUsername
             // 
             this.linkGeneraeUsername.AutoSize = true;
+            this.linkGeneraeUsername.BackColor = System.Drawing.Color.Teal;
             this.linkGeneraeUsername.LinkColor = System.Drawing.Color.White;
             this.linkGeneraeUsername.Location = new System.Drawing.Point(527, 278);
             this.linkGeneraeUsername.Name = "linkGeneraeUsername";
@@ -1299,103 +1398,6 @@
             this.label9.TabIndex = 6;
             this.label9.Text = "First name";
             // 
-            // editorSrc
-            // 
-            this.editorSrc.AutoCompleteBracketsList = new char[] {
-        '(',
-        ')',
-        '{',
-        '}',
-        '[',
-        ']',
-        '\"',
-        '\"',
-        '\'',
-        '\''};
-            this.editorSrc.AutoScrollMinSize = new System.Drawing.Size(25, 15);
-            this.editorSrc.BackBrush = null;
-            this.editorSrc.CharHeight = 15;
-            this.editorSrc.CharWidth = 7;
-            this.editorSrc.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.editorSrc.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.editorSrc.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editorSrc.IsReplaceMode = false;
-            this.editorSrc.Location = new System.Drawing.Point(345, 79);
-            this.editorSrc.Name = "editorSrc";
-            this.editorSrc.Paddings = new System.Windows.Forms.Padding(0);
-            this.editorSrc.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.editorSrc.Size = new System.Drawing.Size(342, 393);
-            this.editorSrc.TabIndex = 43;
-            this.editorSrc.Zoom = 100;
-            // 
-            // toolStrip2
-            // 
-            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripDropDownButton2});
-            this.toolStrip2.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(694, 25);
-            this.toolStrip2.TabIndex = 44;
-            this.toolStrip2.Text = "toolStrip2";
-            // 
-            // toolStripDropDownButton2
-            // 
-            this.toolStripDropDownButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
-            this.toolStripMenuItem2,
-            this.toolStripMenuItem3,
-            this.toolStripMenuItem4,
-            this.toolStripMenuItem5,
-            this.toolStripMenuItem6});
-            this.toolStripDropDownButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton2.Image")));
-            this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
-            this.toolStripDropDownButton2.Size = new System.Drawing.Size(72, 22);
-            this.toolStripDropDownButton2.Text = "Language";
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItem1.Text = "C#";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItem2.Text = "SQL";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItem3.Text = "Javascript";
-            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
-            // 
-            // toolStripMenuItem4
-            // 
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItem4.Text = "PHP";
-            this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
-            // 
-            // toolStripMenuItem5
-            // 
-            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItem5.Text = "VB";
-            this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
-            // 
-            // toolStripMenuItem6
-            // 
-            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItem6.Text = "XML";
-            this.toolStripMenuItem6.Click += new System.EventHandler(this.toolStripMenuItem6_Click);
-            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1418,6 +1420,9 @@
             this.tabAddBug.ResumeLayout(false);
             this.panelAddBug.ResumeLayout(false);
             this.panelAddBug.PerformLayout();
+            this.toolStrip2.ResumeLayout(false);
+            this.toolStrip2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.editorSrc)).EndInit();
             this.tabBugsList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
             this.tabUpdateBug.ResumeLayout(false);
@@ -1428,9 +1433,6 @@
             this.tabAddUser.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.editorSrc)).EndInit();
-            this.toolStrip2.ResumeLayout(false);
-            this.toolStrip2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

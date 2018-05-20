@@ -29,6 +29,8 @@ namespace Assignment_2
             if (dbCon.IsConnect() && !String.IsNullOrEmpty(query))
             {
                 var cmd = new MySqlCommand(query, dbCon.Connection);
+
+                // Execute the query and assign it to the result
                 result = cmd.ExecuteNonQuery();
             }
 
@@ -56,8 +58,11 @@ namespace Assignment_2
                 var cmd = new MySqlCommand(query, dbCon.Connection);
 
                 var dt = new DataTable();
+
+                // Executes the query and adds the returned result to data table
                 dt.Load( cmd.ExecuteReader() );
 
+                // Create IDataReader  from the data table
                 result = dt.CreateDataReader();
 
                 dbCon.Close();

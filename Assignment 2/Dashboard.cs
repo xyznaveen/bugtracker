@@ -1,13 +1,7 @@
 ﻿using FastColoredTextBoxNS;
-using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Assignment_2
@@ -38,10 +32,13 @@ namespace Assignment_2
 
             this.Text = "Dashboard :: " + userType;
 
+            // To show the tabs based on user role
             if( userType != null )
             {
                 switch(userType)
                 {
+                    // If the user is admin hide all tabs that are not related
+                    // same is followed below. All unnecessary tabs are hidden for the user.
                     case "admin":
                         {
                             rootTab.TabPages.Remove(tabAddBug);
@@ -142,11 +139,21 @@ namespace Assignment_2
             }
         }
 
+        /// <summary>
+        /// Fetches the information again from database every time the user refreshes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void adminRefreshList_Click(object sender, EventArgs e)
         {
             fetchFromTableUsers();
         }
 
+        /// <summary>
+        /// Remove the user from the database.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void adminDisableUser_Click(object sender, EventArgs e)
         {
             int selectedUser = -1;
@@ -163,6 +170,11 @@ namespace Assignment_2
             fetchFromTableUsers();
         }
 
+        /// <summary>
+        /// Event fired when the user tries to edit the information clicking the edit details button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void adminEditDetails_Click(object sender, EventArgs e)
         {
             int selectedUser = -1;
@@ -178,24 +190,20 @@ namespace Assignment_2
                     fetchFromTableUsers();
                 }
             }
-
-            /* if (selectedUser )
-            {
-                int selectedRow = adminUsersList.CurrentCell.RowIndex;
-                int colCount = adminUsersList.ColumnCount;
-
-                for (int i = 0; i < colCount; ++i)
-                {
-                    adminUsersList[i, selectedRow].Selected = true;
-                }
-            } */
             
         }
 
+        /// <summary>
+        /// Helps to change the password of current user.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Prepare new instance of the form
             ChangePassword cp = new ChangePassword();
 
+            // If password update was successful
             if( cp.ShowDialog() == DialogResult.OK )
             {
                 MessageBox.Show("Password updated.");
@@ -205,11 +213,18 @@ namespace Assignment_2
 
         private void linkGeneraeUsername_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            // Prepare random string 
             Random rn = new Random();
             int id = rn.Next(999);
+            // Assing it to the user tab
             textUsername.Text = RandomString(3).ToLower() + id;
         }
 
+        /// <summary>
+        /// Returns new random string based on specified length
+        /// </summary>
+        /// <param name="length"></param>
+        /// <returns></returns>
         public static string RandomString(int length)
         {
             Random random = new Random();
@@ -220,6 +235,7 @@ namespace Assignment_2
 
         private void linkGeneratePassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            // Generate random password and assign it to the textbox
             string pass = RandomString(8);
             textPassword.Text = pass;
             textRePassword.Text = pass;
@@ -227,6 +243,8 @@ namespace Assignment_2
 
         private void btnCreateUser_Click(object sender, EventArgs e)
         {
+
+            // Declaring variables
             string strFirstName, strLastName, strAddress, strNumber, strEmail, strUsername, strPassword, strRePassword, strCombo = null;
             
             strFirstName    = textFirstName.Text;
@@ -241,11 +259,13 @@ namespace Assignment_2
 
             bool isNotEmpty = !(String.IsNullOrEmpty(strFirstName) && String.IsNullOrEmpty(strLastName) && String.IsNullOrEmpty(strAddress) && String.IsNullOrEmpty(strNumber) && String.IsNullOrEmpty(strEmail) && String.IsNullOrEmpty(strUsername) && String.IsNullOrEmpty(strPassword) && String.IsNullOrEmpty(strRePassword) && String.IsNullOrEmpty(strCombo));
 
+            // All files are filled
             if( isNotEmpty )
             {
                 string query = "INSERT INTO users(first_name,last_name,username,password) VALUES('"+strFirstName+"','"+strLastName+"','"+strUsername+"','"+strPassword+"')";
                 int queryResult = DBHelper.runInsert(query);
                 
+                // If query was executed successfully
                 if(queryResult == 1)
                 {
                     // Get last inserted user ID
@@ -266,6 +286,7 @@ namespace Assignment_2
                         tId = tReader.GetInt32(0);
                     }
 
+                    // Assign the role to the user
                     string mapQuery = "INSERT INTO roles_users(user_id,role_id) VALUES(" + lUid + "," + tId + ")";
                     DBHelper.runInsert(mapQuery);
                 }
@@ -282,6 +303,7 @@ namespace Assignment_2
 
         private void tabAddUser_Enter(object sender, EventArgs e)
         {
+            // When the user focuses the tab prepare list of users to be assigned
             string query = "SELECT type FROM roles WHERE 1";
             IDataReader reader = DBHelper.runSelect(query);
             addUserComboType.Items.Clear();
@@ -296,10 +318,12 @@ namespace Assignment_2
             string fetchQuery = "SELECT * FROM bugs b, users u WHERE b.id=" + currentbugId + " AND b.assigned_by = u.id ";
             IDataReader fetchReader = DBHelper.runSelect(fetchQuery);
             
+            // Clear current list of vales in the combo box
             comboUpdateBugs.Items.Clear();
             comboUpdateBugs.Items.Add("notfixed");
             comboUpdateBugs.Items.Add("fixed");
 
+            // Loop until the data is found
             while ( fetchReader.Read() )
             {
                 textBugTitle.Text = fetchReader.GetString(4);
@@ -312,6 +336,7 @@ namespace Assignment_2
                 textLineEnd.Text = fetchReader.GetInt32(12).ToString();
             }
 
+            // Fetch the source code the table where it is stored
             string fcQuery = "SELECT src FROM vcs WHERE parent_id=" + currentbugId;
             IDataReader idr = DBHelper.runSelect(fcQuery);
             while (idr.Read()) {
@@ -319,6 +344,10 @@ namespace Assignment_2
             }
         }
 
+        /// <summary>
+        /// Clears all the controls which have text in them.
+        /// TO automatically empty all the fields after an action is performed.
+        /// </summary>
         private void ClearTextBoxes()
         {
             Action<Control.ControlCollection> func = null;
@@ -339,6 +368,7 @@ namespace Assignment_2
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // Declaring the variables
             int startLine, endLine = -1;
             string strClassName, strMethodName, strFoundBy, strTitle, strSummary, strSeverity, strSourceCode, strUrl = null;
 
@@ -359,6 +389,7 @@ namespace Assignment_2
             IDataReader ureader = DBHelper.runSelect(userQuery);
             while (ureader.Read())
             {
+                // Select primary key from user and assign it to auid
                 auid = ureader.GetInt32(0);
             }
                         
@@ -366,7 +397,6 @@ namespace Assignment_2
                 "VALUES('notfixed',"+ auid + ","+ userId + ",'"+strTitle+"','"+strSummary+"','"+strMethodName+"','"+strClassName+"','"+comboTesterSeverity.Text+"',"+startLine+","+endLine+",'"+strUrl+"')";
             DBHelper.runInsert(query);
 
-            // "SELECT id FROM bugs WHERE title='"+strTitle+"' AND method='"+strMethodName+"'";
             string getLastIdquery = "SELECT id FROM bugs WHERE title='" + strTitle + "' AND assigned_to=" + userId;
             IDataReader lidReader = DBHelper.runSelect(getLastIdquery);
             int lid = -1;
@@ -375,13 +405,16 @@ namespace Assignment_2
                 lid = lidReader.GetInt32(0);
             }
 
+            // Escape single quotes from the code  string which might cause problems when inserting code in SQL statement
             string sanitized = editorSrc.Text.Replace("'", "\\'");
 
+            // Prepare the query and insert into the database
             string codeQuery = "INSERT INTO vcs(src,modified_by,parent_id) VALUES('" + sanitized + "'," + userId + ","+lid+")";
             int sts = DBHelper.runInsert(codeQuery);
 
             if(sts == 1)
             {
+                // Clear all  fields if the insertion was a success
                 ClearTextBoxes();
             }
         }
@@ -404,6 +437,7 @@ namespace Assignment_2
 
         private void tabAddBug_Enter(object sender, EventArgs e)
         {
+            // Fetch all the username from the database and show it in the combobox
             string query = "SELECT username FROM users WHERE 1";
             IDataReader reader = DBHelper.runSelect(query);
 
@@ -411,6 +445,7 @@ namespace Assignment_2
 
             while (reader.Read())
             {
+                // Populate the combobox
                 comboAssignedTo.Items.Add(reader.GetString(0));
             }
         }
@@ -420,6 +455,12 @@ namespace Assignment_2
             editor.Language = FastColoredTextBoxNS.Language.SQL;
         }
 
+
+        /// <summary>
+        /// Change the syntax highlighter programming language
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cToolStripMenuItem_Click(object sender, EventArgs e)
         {
             editor.Language = FastColoredTextBoxNS.Language.CSharp;

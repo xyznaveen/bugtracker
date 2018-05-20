@@ -33,6 +33,9 @@ namespace Assignment_2
             }
         }
         
+        /// <summary>
+        /// Get existing details of the users and fill the text fields 
+        /// </summary>
         private void FetchUserAndPopulate()
         {
             string query = "SELECT first_name, last_name, type FROM users u, roles r, roles_users ru WHERE u.id = ru.user_id AND r.id = ru.role_id AND u.id = " + user;
@@ -53,11 +56,14 @@ namespace Assignment_2
             string strFn = firstName.Text;
             string strLn = lastName.Text;
 
+            // Update new user details from the textbox
             string query = "UPDATE users SET first_name='" + strFn + "', last_name='" + strLn + "' WHERE id=" + user;
             int result = DBHelper.runInsert(query);
             
             if( result == 1 )
             {
+
+                // Fill in the details
                 FetchUserAndPopulate();
 
                 int rqId = -1;
@@ -67,8 +73,6 @@ namespace Assignment_2
                 {
                     rqId = rqReader.GetInt32(0);
                 }
-
-                MessageBox.Show("Update sttus : " + rqId);
 
                 int mqResult = -1;
                 string mapQuery = "UPDATE `roles_users` SET `user_id`=" + user + ",`role_id`=" + rqId + " WHERE `user_id`=" + user;

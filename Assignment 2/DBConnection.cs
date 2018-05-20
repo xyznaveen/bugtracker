@@ -14,6 +14,9 @@ namespace Assignment_2
         {
         }
 
+        /// <summary>
+        /// Get and Set property of the variables
+        /// </summary>
         private string databaseName = string.Empty;
         public string DatabaseName
         {
@@ -28,6 +31,9 @@ namespace Assignment_2
             get { return connection; }
         }
 
+        /// <summary>
+        /// Create a new instance and return it to the caller.
+        /// </summary>
         private static DBConnection _instance = null;
         public static DBConnection Instance()
         {
@@ -36,6 +42,10 @@ namespace Assignment_2
             return _instance;
         }
         
+        /// <summary>
+        /// Connects to the database if the connection is not null
+        /// </summary>
+        /// <returns></returns>
         public bool IsConnect()
         {
             if (Connection == null)
@@ -49,7 +59,10 @@ namespace Assignment_2
 
             return true;
         }
-
+        
+        /// <summary>
+        /// Closes the connection
+        /// </summary>
         public void Close()
         {
             connection.Close();
